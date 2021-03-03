@@ -15,6 +15,7 @@ on:
       - .github/workflows/train-deepspeed-transformers-docker.yml
 
 # https://docs.github.com/en/actions/guides/publishing-docker-images
+# https://docs.github.com/en/packages/guides/migrating-to-github-container-registry-for-docker-images
 
 jobs:
   build:
@@ -24,10 +25,10 @@ jobs:
       uses: actions/checkout@v2
     - name: docker build
       run: |
-        docker build . --tag ghcr.io/Azure/deepspeed/transformers:$GITHUB_SHA
+        docker build . --tag ghcr.io/azure/deepspeed/transformers:$GITHUB_SHA
       working-directory: workflows/train/deepspeed/transformers
 
     - name: docker push
       run: |
         echo ${{ secrets.GHCR_TOKEN }} | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
-        docker push ghcr.io/Azure/deepspeed/transformers:$GITHUB_SHA
+        docker push ghcr.io/azure/deepspeed/transformers:$GITHUB_SHA
