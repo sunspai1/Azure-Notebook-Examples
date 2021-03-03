@@ -1,4 +1,4 @@
-name: train-deepspeed-transformers-job
+name: train-deepspeed-transformers-docker
 on:
   push:
     branches:
@@ -12,7 +12,7 @@ on:
       - dkmiller/ghcr
     paths:
       - workflows/train/deepspeed/transformers/**
-      - .github/workflows/train-deepspeed-transformers-job.yml
+      - .github/workflows/train-deepspeed-transformers-docker.yml
 jobs:
   build:
     runs-on: ubuntu-latest
