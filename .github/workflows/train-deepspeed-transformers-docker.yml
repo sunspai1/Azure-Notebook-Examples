@@ -1,17 +1,17 @@
 name: train-deepspeed-transformers-docker
 on:
+  # TODO: remove this one.
   push:
     branches:
     - dkmiller/ghcr
+  # TODO: run only every two weeks.
   schedule:
     - cron: "0 0/2 * * *"
   pull_request:
     branches:
       - main
-      # TODO: remove me.
-      - dkmiller/ghcr
     paths:
-      - workflows/train/deepspeed/transformers/**
+      - workflows/train/deepspeed/transformers/dockerfile
       - .github/workflows/train-deepspeed-transformers-docker.yml
 
 # https://docs.github.com/en/actions/guides/publishing-docker-images
@@ -26,6 +26,7 @@ jobs:
       run: |
         docker build . --tag docker.pkg.github.com/deepspeed/transformers
       working-directory: workflows/train/deepspeed/transformers
+    # TODO: add an `if` condition so this only runs on the main branch.
     - name: Push to GitHub Packages
       uses: docker/build-push-action@v1
       with:
@@ -34,14 +35,3 @@ jobs:
         registry: docker.pkg.github.com
         repository: docker.pkg.github.com/deepspeed/transformers
         tag_with_ref: true
-
-# docker build workflows/train/deepspeed/transformers/ -t train-deepspeed-transformers
-
-#      - name: Push to GitHub Packages
-#        uses: docker/build-push-action@v1
-#        with:
-#          username: ${{ github.actor }}
-#          password: ${{ secrets.GITHUB_TOKEN }}
-#          registry: docker.pkg.github.com
-#          repository: my-org/my-repo/my-image
-#          tag_with_ref: true
