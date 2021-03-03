@@ -1,5 +1,8 @@
 name: train-deepspeed-transformers-job
 on:
+  push:
+    branches:
+    - dkmiller/ghcr
   schedule:
     - cron: "0 0/2 * * *"
   pull_request:
