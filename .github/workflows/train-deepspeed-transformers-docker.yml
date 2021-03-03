@@ -22,9 +22,20 @@ jobs:
     steps:
     - name: check out repo
       uses: actions/checkout@v2
-      
     - name: docker build
-      run: docker build workflows/train/deepspeed/transformers/ -t foo
+      run: |
+        docker build . --tag docker.pkg.github.com/deepspeed/transformers
+      working-directory: workflows/train/deepspeed/transformers
+    - name: Push to GitHub Packages
+      uses: docker/build-push-action@v1
+      with:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+        registry: docker.pkg.github.com
+        repository: docker.pkg.github.com/deepspeed/transformers
+        tag_with_ref: true
+
+# docker build workflows/train/deepspeed/transformers/ -t train-deepspeed-transformers
 
 #      - name: Push to GitHub Packages
 #        uses: docker/build-push-action@v1
