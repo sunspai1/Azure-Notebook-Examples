@@ -71,7 +71,9 @@ class TritonPythonModel:
             else:
                 ordered = scaled
 
-            ordered = pb_utils.Tensor("data_0", ordered.astype(bytes))
+            ordered = ordered.astype(np.float32)
+            ordered = np.expand_dims(ordered, axis=0)
+            ordered = pb_utils.Tensor("data_0", ordered)
             # Channels are in RGB order. Currently model configuration data
             # doesn't provide any information as to other channel orderings
             # (like BGR) so we just assume RGB.
