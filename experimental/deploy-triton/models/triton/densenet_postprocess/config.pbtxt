@@ -1,0 +1,19 @@
+name: "densenet_postprocess"
+backend: "python"
+
+input [
+  {
+    name: "fc6_1"
+    data_type: TYPE_FP32
+    dims: [ 1, 1000, 1, 1 ]
+  }
+]
+output [
+  {
+    name: "label"
+    data_type: TYPE_STRING
+    dims: [ -1 ]
+  }
+]
+
+instance_group [{ kind: KIND_CPU }]
