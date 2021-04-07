@@ -1183,7 +1183,7 @@ class InferenceServerClient:
         else:
             request_uri = "v2/models/{}/infer".format(quote(model_name))
 
-        g = self._pool.apply_async(
+        g = self._pool.apply(
             wrapped_post, (request_uri, request_body, headers, query_params)
         )
 
@@ -1195,11 +1195,11 @@ class InferenceServerClient:
                 verbose_message = verbose_message + " '{}'".format(request_id)
             print(verbose_message)
 
-        return InferAsyncRequest(g, self._verbose)
+        return InferRequest(g, self._verbose)
 
 
-class InferAsyncRequest:
-    """An object of InferAsyncRequest class is used to describe
+class InferRequest:
+    """An object of InferRequest class is used to describe
     a handle to an ongoing asynchronous inference request.
 
     Parameters
