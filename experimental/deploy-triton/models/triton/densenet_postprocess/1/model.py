@@ -12,10 +12,11 @@ import io
 class TritonPythonModel:
 
     def initialize(self, args):
-        model_dir = os.path.join(os.environ["AZUREML_MODEL_DIR"])
+        model_dir = os.path.abspath(os.path.join('/var', 'azureml-app', os.environ["AZUREML_MODEL_DIR"], 'triton'))
         label_path = os.path.join(
             model_dir, "densenet_onnx", "densenet_labels.txt"
         )
+        print(f"DEBUG: model dir is {model_dir}")
         label_file = open(label_path, "r")
         labels = label_file.read().split("\n")
         self.label_dict = dict(enumerate(labels))
