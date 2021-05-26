@@ -1,0 +1,13 @@
+$schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.json
+code: 
+  local_path: src
+command: >
+  python get_data.py
+environment:
+  docker:
+    build:
+      dockerfile: file:Dockerfile
+compute:
+  target: azureml:cpu-cluster
+experiment_name: github-data-prototype
+description: Prototype to run data stuff.
