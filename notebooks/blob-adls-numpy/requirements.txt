@@ -5,5 +5,6 @@ adlfs
 fastparquet
 matplotlib
 mlflow
+lightgbm
 azureml-core
 azureml-mlflow
