@@ -1,4 +1,4 @@
-name: model-env
+name: model1-env
 channels:
   - conda-forge
 dependencies:
