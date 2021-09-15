@@ -1,14 +1,15 @@
 type: pipeline_job
+description: Run jobs with shell commands in a pipeline
 jobs:
   hello:
     type: command
     command: echo "hello"
-    environemnt:
+    environment:
       image: python
     compute: azureml:cpu-cluster
   world:
     type: command
-    command: echo "world"
+    command: echo "hello"
     environment:
       image: python
-    compute: azureml:cpu-cluster
+    compute: azureml:cpu-cluster  

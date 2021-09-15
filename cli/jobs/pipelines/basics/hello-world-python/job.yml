@@ -1,0 +1,20 @@
+type: pipeline_job
+description: Run jobs with python scripts in a pipeline
+compute: azureml:cpu-cluster
+jobs:
+  hello:
+    type: command
+    code: 
+      local_path: ./src
+    command: python hello.py
+    environment:
+      image: python
+    compute: azureml:cpu-cluster
+  world:
+    type: command
+    code: 
+      local_path: ./src
+    command: python hello.py
+    environment:
+      image: python
+    compute: azureml:cpu-cluster
