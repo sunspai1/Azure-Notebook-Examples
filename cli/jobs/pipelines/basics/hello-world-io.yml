@@ -8,10 +8,11 @@ jobs:
     outputs:
       world:
   world:
-    command: cat ${{inputs.world}}/world.txt
+    command: cat ${{inputs.world}}/world.txt && ls ${{inputs.default}}
     environment:
       image: python
     compute: azureml:cpu-cluster
     inputs:
       world: ${{jobs.hello.outputs.world}}
+      default: ${{jobs.hello.outputs.default}}
  
