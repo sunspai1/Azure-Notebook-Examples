@@ -2,7 +2,8 @@ import os
 import mlflow
 
 os.system('echo "hello world" > helloworld.txt')
-print(os.environ)
+for key, val in os.environ:
+    print(key, val)
 
 mlflow.log_param("hello", "world")
 mlflow.log_metric("hello_factor", 0.9)
