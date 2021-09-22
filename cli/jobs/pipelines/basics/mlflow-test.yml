@@ -1,0 +1,12 @@
+type: pipeline
+jobs:
+  hello:
+    command: >-
+      pip install --upgrade mlflow azureml-mlflow 
+      &&
+      python test.py
+    code:
+      local_path: src
+    environment:
+      image: python:3.8
+    compute: azureml:cpu-cluster
