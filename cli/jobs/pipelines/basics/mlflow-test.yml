@@ -5,6 +5,12 @@ jobs:
       pip install --upgrade mlflow azureml-mlflow 
       &&
       python test.py
+      &&
+      apt-get update
+      &&
+      apt-get install tree
+      &&
+      tree
     code:
       local_path: src
     environment:
